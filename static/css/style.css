@@ -20,3 +20,69 @@ body {
 h1 {
   margin-top: 0;
 }
+
+.intro {
+  color: #4b5563;
+}
+
+.application-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.application-card {
+  padding: 1.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+
+.application-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.application-heading h2,
+.position {
+  margin: 0;
+}
+
+.position {
+  margin-top: 0.25rem;
+  color: #4b5563;
+}
+
+.status {
+  height: fit-content;
+  padding: 0.3rem 0.6rem;
+  border-radius: 1rem;
+  color: #1e3a8a;
+  background-color: #dbeafe;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.application-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+.application-details dt {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.application-details dd {
+  margin: 0.25rem 0 0;
+}
+
+.empty-state {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px dashed #9ca3af;
+  border-radius: 0.5rem;
+  text-align: center;
+}

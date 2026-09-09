@@ -9,7 +9,59 @@
   <body>
     <main class="page-container">
       <h1>Job Application Tracker</h1>
-      <p>Your application overview will appear here.</p>
+      <p class="intro">Your current applications are listed below.</p>
+
+      {% if applications %}
+        <div class="application-list">
+          {% for application in applications %}
+            <article class="application-card">
+              <div class="application-heading">
+                <div>
+                  <h2>{{ application["company"] }}</h2>
+                  <p class="position">{{ application["position"] }}</p>
+                </div>
+                <span class="status">{{ application["status"] }}</span>
+              </div>
+
+              <dl class="application-details">
+                <div>
+                  <dt>Location</dt>
+                  <dd>{{ application["location"] or "Not provided" }}</dd>
+                </div>
+                <div>
+                  <dt>Application date</dt>
+                  <dd>{{ application["application_date"] }}</dd>
+                </div>
+                <div>
+                  <dt>Deadline</dt>
+                  <dd>
+                    {% if application["deadline_date"] %}
+                      {{ application["deadline_date"] }}
+                      {% if application["deadline_type"] %}
+                        ({{ application["deadline_type"] }})
+                      {% endif %}
+                    {% else %}
+                      None
+                    {% endif %}
+                  </dd>
+                </div>
+              </dl>
+
+              {% if application["notes"] %}
+                <p><strong>Notes:</strong> {{ application["notes"] }}</p>
+              {% endif %}
+
+              {% if application["job_url"] %}
+                <a href="{{ application["job_url"] }}" target="_blank" rel="noreferrer">
+                  View job posting
+                </a>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="empty-state">No applications yet.</p>
+      {% endif %}
     </main>
   </body>
 </html>

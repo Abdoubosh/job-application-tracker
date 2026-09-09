@@ -2,9 +2,13 @@
 
 A beginner-friendly Flask web application for organizing IT Ausbildung and job applications.
 
-## Current stage
+## Current features
 
-Milestone 1 provides the project foundation and a basic Flask page. Application tracking features will be added in later milestones.
+- SQLite database for application data
+- Application list on the main page
+- Empty state when no applications exist
+
+Application forms and other features will be added in later milestones.
 
 ## Run locally
 
