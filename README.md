@@ -6,6 +6,8 @@ A beginner-friendly Flask web application for organizing IT Ausbildung and job a
 
 - SQLite database for application data
 - Application list on the main page
+- Form for adding an application
+- Server-side validation for required fields
 - Empty state when no applications exist
 
 Application forms and other features will be added in later milestones.

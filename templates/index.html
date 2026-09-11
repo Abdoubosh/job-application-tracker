@@ -1,67 +1,61 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Job Application Tracker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  </head>
-  <body>
-    <main class="page-container">
-      <h1>Job Application Tracker</h1>
-      <p class="intro">Your current applications are listed below.</p>
+{% extends "base.html" %}
 
-      {% if applications %}
-        <div class="application-list">
-          {% for application in applications %}
-            <article class="application-card">
-              <div class="application-heading">
-                <div>
-                  <h2>{{ application["company"] }}</h2>
-                  <p class="position">{{ application["position"] }}</p>
-                </div>
-                <span class="status">{{ application["status"] }}</span>
-              </div>
+{% block content %}
+  <h1>Job Application Tracker</h1>
+  <p class="intro">Your current applications are listed below.</p>
 
-              <dl class="application-details">
-                <div>
-                  <dt>Location</dt>
-                  <dd>{{ application["location"] or "Not provided" }}</dd>
-                </div>
-                <div>
-                  <dt>Application date</dt>
-                  <dd>{{ application["application_date"] }}</dd>
-                </div>
-                <div>
-                  <dt>Deadline</dt>
-                  <dd>
-                    {% if application["deadline_date"] %}
-                      {{ application["deadline_date"] }}
-                      {% if application["deadline_type"] %}
-                        ({{ application["deadline_type"] }})
-                      {% endif %}
-                    {% else %}
-                      None
-                    {% endif %}
-                  </dd>
-                </div>
-              </dl>
+  {% if applications %}
+    <div class="application-list">
+      {% for application in applications %}
+        <article class="application-card">
+          <div class="application-heading">
+            <div>
+              <h2>{{ application["company"] }}</h2>
+              <p class="position">{{ application["position"] }}</p>
+            </div>
+            <span class="status">{{ application["status"] }}</span>
+          </div>
 
-              {% if application["notes"] %}
-                <p><strong>Notes:</strong> {{ application["notes"] }}</p>
-              {% endif %}
+          <dl class="application-details">
+            <div>
+              <dt>Location</dt>
+              <dd>{{ application["location"] or "Not provided" }}</dd>
+            </div>
+            <div>
+              <dt>Application date</dt>
+              <dd>{{ application["application_date"] }}</dd>
+            </div>
+            <div>
+              <dt>Deadline</dt>
+              <dd>
+                {% if application["deadline_date"] %}
+                  {{ application["deadline_date"] }}
+                  {% if application["deadline_type"] %}
+                    ({{ application["deadline_type"] }})
+                  {% endif %}
+                {% else %}
+                  None
+                {% endif %}
+              </dd>
+            </div>
+          </dl>
 
-              {% if application["job_url"] %}
-                <a href="{{ application["job_url"] }}" target="_blank" rel="noreferrer">
-                  View job posting
-                </a>
-              {% endif %}
-            </article>
-          {% endfor %}
-        </div>
-      {% else %}
-        <p class="empty-state">No applications yet.</p>
-      {% endif %}
-    </main>
-  </body>
-</html>
+          {% if application["notes"] %}
+            <p><strong>Notes:</strong> {{ application["notes"] }}</p>
+          {% endif %}
+
+          {% if application["job_url"] %}
+            <a href="{{ application["job_url"] }}" target="_blank" rel="noreferrer">
+              View job posting
+            </a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No applications yet.</p>
+      <a class="button" href="{{ url_for('add_application') }}">Add your first application</a>
+    </div>
+  {% endif %}
+{% endblock %}
